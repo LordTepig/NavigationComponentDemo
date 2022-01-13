@@ -18,5 +18,9 @@
         android:id="@+id/replyFragment"
         android:name="com.bowen.navigationcomponentdemo.ReplyFragment"
         android:label="fragment_reply"
-        tools:layout="@layout/fragment_reply" />
+        tools:layout="@layout/fragment_reply" >
+        <argument
+            android:name="messageArg"
+            app:argType="string" />
+    </fragment>
 </navigation>

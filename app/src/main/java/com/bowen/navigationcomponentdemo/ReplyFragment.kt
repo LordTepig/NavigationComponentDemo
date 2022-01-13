@@ -5,6 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.fragment.app.setFragmentResult
+import androidx.navigation.findNavController
 import com.bowen.navigationcomponentdemo.databinding.FragmentReplyBinding
 
 class ReplyFragment : Fragment() {
@@ -18,8 +21,13 @@ class ReplyFragment : Fragment() {
     ): View? {
         _binding = FragmentReplyBinding.inflate(inflater, container, false)
         val rootView = binding.root
+        val args = ReplyFragmentArgs.fromBundle(requireArguments())
+        binding.messageTextview.text = args.messageArg
         binding.sendReplyButton.setOnClickListener {
+            val reply = binding.replyEdittext.text.toString()
 
+            setFragmentResult("requestKey", bundleOf("bundleKey" to reply))
+            rootView.findNavController().navigateUp()
         }
         return rootView
     }
